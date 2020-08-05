@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Blogger a Blogging Category Flat Bootstrap Responsive Website Template | Grids :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Blogger Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android  Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+
+<link href="{{ static_url("css/bootstrap.css")}}" rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Open+Sans:700,700italic,800,300,300italic,400italic,400,600,600italic' rel='stylesheet' type='text/css'>
+<!--Custom-Theme-files-->
+	<link href="{{static_url("css/style.css")}}" rel='stylesheet' type='text/css' />	
+	<script src="js/jquery.min.js"> </script>
+<!--/script-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<style type="text/css"> 
+        html,body{
+        overflow: hidden;
+        overflow-x: hidden;
+        }
+</style>
+<body>
+	<!-- header-section-starts -->
+      <div class="h-top" id="home">
+		   <div class="top-header">
+				  <ul style="float:right" class="cl-effect-16 top-nag">
+						<li><a href="/logout" data-hover="Logout">Logout</a></li>
+						<li><a href="/" data-hover="Go Back">Go Back</a></li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+       </div>
+	<div class="full">
+			<div class="col-md-3 top-nav grid-sec" style="height: 1000px;">
+				     <div class="logo">
+						<a href="index.html"><h1>Welcome!!</h1></a>
+					</div>
+					<div class="top-menu">
+					 <span class="menu"> </span>
+
+					<ul class="cl-effect-16">
+						<li><a href="/" data-hover="HOME">Home</a></li> 
+					
+						<li><a class="active" href="#" data-hover="Add Blog">Add Blog</a></li>
+						<li><a href="/" data-hover="Go Back">Go Back</a></li>
+					</ul>
+					
+			    </div>
+			</div>
+	<div class="col-md-9 main">
+	  <!--grids-->
+	   <div class="grid-section">
+	     <h3 class="tittle">Upload your Blog <i class="glyphicon glyphicon-stop"></i></h3>
+         <div class="sign-up">
+					 {% if status %}
+                     <span style="color: green">Status: {{ status }}</span><p>
+                     <script type="text/javascript">
+                     	<script>
+      					swal({title:"Blog Status",text:"Published Successfully",icon: "success",timer:3000});
+                     </script>
+                     {% end %}
+					<form class="from-group" action='/add_blog' enctype="multipart/form-data" method ="POST">
+					{% module xsrf_form_html() %}
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4 class="a">Blog Title* :</h4>
+						</div>
+						<div class="sign-up2">
+							
+								<input type="text" id="uname" name="title" class="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Title';}" required>
+
+							
+						</div>
+						
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4 class="c">Description* :</h4>
+						</div>
+						<div class="sign-up2">
+							
+								 <textarea name="desc" rows="15" cols="80" class="text" placeholder="Put your content here"></textarea>
+								 </div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1" style="padding-top: 1%">
+							<h4 class="c">Select Tags* :</h4>
+						</div>
+						<div class="sign-up2" style="padding-top: 2%">
+							<div class="container">
+							    <div class="row">
+							        <label class="col-md-1 checkbox-inline" for="checkboxes-1">
+									  <input type="radio" name="checkboxes" value="political">
+									  Political
+									</label>
+									<label style="padding-left: 3%" class="col-md-1 checkbox-inline" for="checkboxes-1">
+									  <input type="radio" name="checkboxes" value="science">
+									  Science
+									</label>
+									<label class="col-md-1 checkbox-inline" for="checkboxes-1">
+									  <input type="radio" name="checkboxes" value="entertainment">
+									  Entertainment
+									</label>
+							    </div>
+							 </div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div style="padding-top:2.5%" class="sign-u">
+						<div class="sign-up1">
+							<h4 class="d">Image :</h4>
+						</div>
+						<div class="sign-up2">
+
+								 <input type="file" class="form-control-file" id ="upswd"  name="img" value="image" onclick=>
+								 <input type="hidden" id="img_path" value="">
+
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					
+
+						<input type="submit" class="btn btn-default" value="Publish" >
+					</form>
+				</div>	
+		
+     <div class="clearfix"> </div>
+	 <div class="clearfix"> </div>
+	</div>
+	<div class="clearfix"> </div>
+</div>	
+
+
+</body>
+</html>

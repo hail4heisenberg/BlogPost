@@ -1,0 +1,27 @@
+-----------------------------------------Hello World...!!--------------------------------------------
+
+--------------------Welcome to Blogging App Built On Tornado (Python) Framework------------------------
+
+
+
+>>>>Instruction to setup the Application Db
+
+1. You can find the mysql db (.sql file) in the project folder.
+
+2. Import the Db in My sql Workbench.
+
+NOTE: Verify the db credentials information in the app.py file. 
+
+
+
+
+
+
+
+>>>>Instruction to Run the Application
+
+1. Open the terminal/command prompt and switch to the project folder.
+
+2. Run the app.py file .
+
+3. Open a Browser and enter "localhost:8000" in the URL window, then hit enter and CONGRATS...the applicaton is ready to Use.

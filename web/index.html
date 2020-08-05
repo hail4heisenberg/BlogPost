@@ -1,0 +1,612 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Blogger a Blogging Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Blogger Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android  Compatible web template, 
+            Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+        
+        <link href="{{ static_url("css/bootstrap.css") }}" rel='stylesheet' type='text/css' />
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:700,700italic,800,300,300italic,400italic,400,600,600italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+        <link href="{{ static_url("css/style.css") }}" rel='stylesheet' type='text/css' />  
+        
+        <script src="js/jquery.min.js"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        
+    </head>
+    <style type="text/css"> 
+        html,body{
+        overflow: hidden;
+        overflow-x: hidden;
+        }
+    </style>
+    <body>
+        <!-- header-section-starts -->
+        <div class="h-top" id="home">
+            <div class="top-header">
+                <ul style="float:right" class="cl-effect-16 top-nag">
+                    <!-- <li><a >Welcome {{ current_user }} !!</a></li> -->
+                    <li><a href="/" data-hover="HOME">HOME</a></li>
+                    
+                    <li><a href="/logout" data-hover="LOGOUT">Logout</a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="full">
+            <div class="col-md-3 top-nav">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>Welcome!!</h1>
+                    </a>
+                </div>
+                <div class="top-menu">
+                    <span class="menu"> </span>
+                    <ul class="cl-effect-16">
+                        <li><a class="active" href="/" data-hover="HOME">Home</a></li>
+                        
+                        <li><a href="/add_blog" data-hover="Add Blog">Add Blog</a></li>
+                        <li><a href="/category/entertainment" data-hover="Entertainment">Entertainment</a></li>
+                    <li><a href="/category/science" data-hover="Science">Science</a></li>
+                    <li><a href="/category/political" data-hover="Political">Political</a></li>
+                    
+                        
+                    </ul>
+                   
+                    
+                </div>
+            </div>
+            <div class="col-md-9 main" >
+                <h3 class="tittle" id="heading" style="margin-left: 25%;  margin-top: 1%;">Trending Blogs <i class="glyphicon glyphicon-picture" style="margin-left: 45%"></i>My Blogs</h3>
+                <!--banner-section-->
+                <div id="main" class="banner-section" style="overflow-y: scroll;overflow-x: hidden; height: 850px; margin-top: 5px;">
+                    {% if len(entries) > 0 %}
+                    {% set i = 0 %}
+                    {% while i < len(entries[0]) %}
+                    {% block entry %}
+                    <div class="main-page-div">
+                        
+                        <div class="main-first-child">
+                            <img class="fancy-img" src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg"/>
+                        </div>
+                        <div style="margin-left: 590px;margin-right: 20px;height: 400px;">
+                            <h1 class="title">{{ entries[0][i][1]}}</h1>
+                            <div class="user-img-div">
+                                <img class="user-img" src="https://randomuser.me/api/portraits/men/95.jpg"/>
+                            </div>
+                            <h2 style="padding-top: 25px;margin-right: 6px;text-align: center;font-size: 1.5rem;">{{entries[0][i][5]}}</h2>
+                            <div style="margin-top: 10px;border: 1px solid #C3C3C3;"></div>
+                            <p rows="8" cols="30" class="para-blog">{{entries[0][i][2]}}</p>
+                        </div>
+                        <ul style=" margin-left: 250px">
+                            
+                            <button type="button" id='{{entries[0][i][0]}}' class="btn btn-light btn-lg" style="border-radius: 50%; " onclick="likepost('{{entries[0][i][0]}}')"><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+                            
+                            <input style="border: none;width:20px;background: transparent;"  id="qty1{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][6]}}" />
+                            
+                            <button type="button" id='dis{{entries[0][i][0]}}' class="btn btn-light btn-lg" style="border-radius: 50%;" onclick="dislikepost('dis{{entries[0][i][0]}}')">
+                            <i class="far fa-thumbs-down" aria-hidden="true"></i>
+                            </button>
+                            
+                            <input style="border: none;width:20px;background: transparent;"  id="qty2{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][8]}}" />
+                        </ul>
+                            <form style="margin-top: 2.5%" action="/viewpost" method="GET">
+                                {% module xsrf_form_html() %}
+                                
+                                <button type="submit" id='view{{entries[0][i][0]}}' class="btn btn-info btn-block btn-lg">
+                                <i class="far fa-eye" aria-hidden="true"></i>    View More
+                                </button>
+                            
+                                <input name="id" value="{{entries[0][i][0]}}" style="display:none;"/>
+
+                            </form>
+                    </div>
+                    {% end %}
+                    {% set i = i+1 %}
+                    {% end%}
+                    {% else %}
+                    {% block entries %}
+                    {% if len(entries[2]) == 0 %}
+                    {% set i = 0 %}
+                    {% while i < len(entries[0]) %}
+                    <div class="main-page-div">
+                        <div class="main-first-child">
+                            <img class="fancy-img" " src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg"/>
+                        </div>
+                        <div style="margin-left: 590px;margin-right: 20px;height: 400px;">
+                            <h1 class="title">{{ entries[0][i][1]}}</h1>
+                            <div class="user-img-div">
+                                <img class="user-img"  src="https://randomuser.me/api/portraits/men/95.jpg"/>
+                                
+                            </div>
+                            <h2 style="padding-top: 25px;margin-right: 6px;text-align: center;font-size: 1.5rem;">{{entries[0][i][5]}}</h2>
+                            <div style="margin-top: 10px;border: 1px solid #C3C3C3;"></div>
+                            <p rows="8" cols="30" class="para-blog">{{entries[0][i][2]}}</p>
+                        </div>
+                        <ul style=" margin-left: 250px;">
+                            {% set flag = 0 %}
+                            {% for d in range(0,len(entries[3]))%}
+                            {% if entries[0][i][0] in entries[3][d]%}
+                            <button type="button" id='{{entries[0][i][0]}}' class="btn btn-light btn-lg"  style="border-radius: 50%; " onclick="likepost('{{entries[0][i][0]}}')" disabled><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty1{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][6]}}" />
+                            <button type="button" id='dis{{entries[0][i][0]}}' class="btn btn-primary btn-lg" style="border-radius: 50%;" onclick="dislikepost('dis{{entries[0][i][0]}}')"><i class="far fa-thumbs-down" aria-hidden="true"></i>
+                            </button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty2{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][8]}}" />
+                            
+                            {% set flag = 1 %}
+                            {% break %}
+                            {% end %}
+                            {% end %}
+                            {% if flag==0 %}
+                            <button type="button" id='{{entries[0][i][0]}}' class="btn btn-light btn-lg"  style="border-radius: 50%; " onclick="likepost('{{entries[0][i][0]}}')"><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty1{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][6]}}" />
+                            <button type="button" id='dis{{entries[0][i][0]}}' class="btn btn-light btn-lg" style="border-radius: 50%;" onclick="dislikepost('dis{{entries[0][i][0]}}')"><i class="far fa-thumbs-down" aria-hidden="true"></i>
+                            </button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty2{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][8]}}" />
+                            
+                            {% end %}
+                        </ul>
+                        <form style="margin-top: 2.5%" action="/viewpost" method="GET">
+                                {% module xsrf_form_html() %}
+                                
+                                <button type="submit" id='view{{entries[0][i][0]}}' class="btn btn-info btn-block btn-lg">
+                                <i class="far fa-eye" aria-hidden="true"></i>    View More
+                                </button>
+                            
+                                <input name="id" value="{{entries[0][i][0]}}" style="display:none;"/>
+
+                        </form>
+                    </div>
+                    {% set i = i+1 %}    
+                    {% end %}
+                    {% end %}
+                    {% if len(entries[3]) == 0 %} 
+                    {% set i = 0 %}
+                    {% while i < len(entries[0]) %}
+                 
+                    <div class="main-page-div">
+                        <div class="main-first-child">
+                        <img class="fancy-img" src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg"/>
+                        </div>
+                        <div style="margin-left: 590px;margin-right: 20px;height: 400px;">
+                            <h1 style="padding-top: 25px;font-size: 1rem;color: #4B4B4B; word-wrap: normal;">{{ entries[0][i][1]}}</h1>
+                            <div class="user-img-div">
+                                <img clas="user-img" src="https://randomuser.me/api/portraits/men/95.jpg"/>
+                                
+                            </div>
+                            <h2 style="padding-top: 25px;margin-right: 6px;text-align: center;font-size: 1.5rem;">{{entries[0][i][5]}}</h2>
+                            <div style="margin-top: 10px;border: 1px solid #C3C3C3;"></div>
+                            <p rows="8" cols="30" class="para-blog">{{entries[0][i][2]}}</p>
+                        </div>
+                        <ul style=" margin-left: 250px;">
+                            {% set flag=0 %}
+                            {% for d in entries[2] %}
+                            {% if entries[0][i][0] == d[0] %}
+                            {% set flag=1 %}
+                            <button type="button" id='{{entries[0][i][0]}}' class="btn btn-primary btn-lg"  style="border-radius: 50%; " onclick="likepost('{{entries[0][i][0]}}')"><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty1{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][6]}}" />
+                            <button type="button" id="dis{{entries[0][i][0]}}" class="btn btn-light btn-lg" style="border-radius: 50%;" onclick="dislikepost('dis{{entries[0][i][0]}}')" disabled><i class="far fa-thumbs-down" aria-hidden="true"></i>
+                            </button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty2{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][8]}}" />
+                            {% break %}
+                            {% end %}
+                            {% end %}
+                            {% if flag==0 %}
+                            <button type="button" id='{{entries[0][i][0]}}' class="btn btn-light btn-lg"  style="border-radius: 50%; " onclick="likepost('{{entries[0][i][0]}}')"><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty1{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][6]}}" />
+                            <button type="button" id="dis{{entries[0][i][0]}}" class="btn btn-light btn-lg" style="border-radius: 50%;" onclick="dislikepost('dis{{entries[0][i][0]}}')"><i class="far fa-thumbs-down" aria-hidden="true"></i>
+                            </button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty2{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][8]}}" />
+                            {% end %}
+                            
+                        </ul>
+                        <form style="margin-top: 2.5%" action="/viewpost" method="GET">
+                                {% module xsrf_form_html() %}
+                                
+                                <button type="submit" id='view{{entries[0][i][0]}}' class="btn btn-info btn-block btn-lg">
+                                <i class="far fa-eye" aria-hidden="true"></i>    View More
+                                </button>
+                            
+                                <input name="id" value="{{entries[0][i][0]}}" style="display:none;"/>
+
+                        </form>
+                    </div>
+                    {% set i=i+1 %}
+                    {% end %}
+                    {% end %}
+                    {% if len(entries)==4 %}
+                    {% set i = 0 %}
+                    {% while i < len(entries[0]) %}
+                    
+                    <div class="main-page-div">
+                        <div class="main-first-child"><img class="fancy-img" src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg"/>
+                        </div>
+                        <div style="margin-left: 590px;margin-right: 20px;height: 400px;">
+                            <h1 style="padding-top: 25px;font-size: 1rem;color: #4B4B4B; word-wrap: normal;">{{ entries[0][i][1]}}</h1>
+                            <div class="user-img-div">
+                                <img class="user-img" src="https://randomuser.me/api/portraits/men/95.jpg"/>
+                                
+                            </div>
+                            <h2 style="padding-top: 25px;margin-right: 6px;text-align: center;font-size: 1.5rem;">{{entries[0][i][5]}}</h2>
+                            <div style="margin-top: 10px;border: 1px solid #C3C3C3;"></div>
+                            <p rows="8" cols="30" class="para-blog">{{entries[0][i][2]}}</p>
+                        </div>
+                        <ul style=" margin-left: 250px;">
+                            {% set flag=0 %}
+                            {% for d in entries[2] %}
+                            {% if entries[0][i][0] == d[0] %}
+                            {% set flag=1 %}
+                            <button type="button" id='{{entries[0][i][0]}}' class="btn btn-primary btn-lg"  style="border-radius: 50%; " onclick="likepost('{{entries[0][i][0]}}')"><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty1{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][6]}}" />
+                            <button type="button" id='dis{{entries[0][i][0]}}' class="btn btn-light btn-lg" style="border-radius: 50%;" onclick="dislikepost('dis{{entries[0][i][0]}}')" disabled><i class="far fa-thumbs-down" aria-hidden="true"></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty2{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][8]}}" />
+                            {% break %}
+                            {% else %}
+                            {% for k in entries[3] %}
+                            {% if entries[0][i][0] == k[0] %}
+                            {% set flag=1 %}
+                            <button type="button" id='{{entries[0][i][0]}}' class="btn btn-light btn-lg"  style="border-radius: 50%; " onclick="likepost('{{entries[0][i][0]}}')" disabled><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty1{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][6]}}" />
+                            <button type="button" id='dis{{entries[0][i][0]}}' class="btn btn-primary btn-lg" style="border-radius: 50%;" onclick="dislikepost('dis{{entries[0][i][0]}}')"><i class="far fa-thumbs-down" aria-hidden="true"></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty2{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][8]}}" />
+                            {% break %}
+                            {% end %}
+                            {% end %} 
+                            {% end %}
+                            {% end %}
+                            {% if flag==0 %}
+                            <button type="button" id='{{entries[0][i][0]}}' class="btn btn-light btn-lg"  style="border-radius: 50%; " onclick="likepost('{{entries[0][i][0]}}')"><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty1{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][6]}}" />
+                            <button type="button" id='dis{{entries[0][i][0]}}' class="btn btn-light btn-lg" style="border-radius: 50%;" onclick="dislikepost('dis{{entries[0][i][0]}}')"><i class="far fa-thumbs-down" aria-hidden="true" ></i></button>
+                            <input style="border: none;width:20px;background: transparent;"  id="qty2{{entries[0][i][0]}}" readonly="readonly" type="text" value="{{entries[0][i][8]}}" />
+                            {% end %}
+                            
+                        </ul>
+                        <form style="margin-top: 2.5%" action="/viewpost" method="GET">
+                                {% module xsrf_form_html() %}
+                                
+                                <button type="submit" id='view{{entries[0][i][0]}}' class="btn btn-info btn-block btn-lg">
+                                <i class="far fa-eye" aria-hidden="true"></i>    View More
+                                </button>
+                            
+                                <input name="id" value="{{entries[0][i][0]}}" style="display:none;"/>
+
+                        </form>
+                    </div>
+                    {% set i = i+1 %}
+                    {% end %}
+                    {% end %}
+                    {%end%}
+                    {%end%}
+                    <!--//top-news-->
+                </div>
+                <!--//banner-section-->
+                <div class="banner-right-text" style="height: 830px; overflow-y: scroll;">
+                    <!--/general-news-->
+                    <div class="general-news">
+                        <div class="general-inner">
+                            <div class="media" id="parent">
+                                {% for ent in entries[1] %}
+                                {% block ent %}  
+                                <div style="margin-top:10%" id="child{{ent[0]}}" class="general-text two">
+                                    <img src="{{ static_url("images/gen3.jpg") }}" class="img-responsive" alt="">
+                                    <h5 class="top">{{ent[1]}}</h5>
+                                    <p style="overflow-wrap: break-word;text-overflow: ellipsis;overflow: hidden;height: 50px">{{ent[2]}}</p>
+                                    <p>
+                                        <a class="span_link" href="#">Liked By <span class="far fa-thumbs-up"></span> {{ent[6]}}</a>
+
+                                        <a class="span_link" href="#">Disliked By <span class="far fa-thumbs-down"></span> {{ent[8]}}</a>
+                                        <form action="/editpost" method="GET">
+                                        <button type="submit" class="span_link" name="{{ent[0]}}" id="edit{{ent[0]}}" style="float: right;margin-right: 20px"><span class="far fa-edit"></span></button>
+                                        </form>
+                                        <a class="span_link" id="del{{ent[0]}}" onclick="deletepost('{{ent[0]}}')" style="float: right;margin-right: 20px"><span class="fas fa-trash"></span></a>
+                                    </p>
+                                <form style="margin-top: 2.5%" action="/viewpost" method="GET">
+                                {% module xsrf_form_html() %}
+                                
+                                <button type="submit" id='view{{ent[0]}}' class="btn btn-info btn-block btn-sm">
+                                <i class="far fa-eye" aria-hidden="true"></i>    View More
+                                </button>
+                            
+                                <input name="id" value="{{ent[0]}}" style="display:none;"/>
+
+                                </form>
+                                </div>
+                                {% end %}
+                                {% end %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <!--//footer-->
+        <!--start-smooth-scrolling-->
+        <script type="text/javascript">
+            $(document).ready(function() {
+            
+            var defaults = {
+                containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+            };
+            
+            
+            $().UItoTop({ easingType: 'easeOutQuart' });
+            
+            });
+            
+            function likepost(id) {
+            
+                if(document.getElementById(id).classList.contains("btn-light"))
+                {
+                    var xsrf = $.cookie('_xsrf')
+                    $.ajax({
+                        type: 'POST',
+                        url: '/likes',
+                        data : id,
+                        headers: {'X-XSRFToken' : xsrf },
+                        dataType: 'text',
+                        success: function(data) {
+                            document.getElementById(id).classList.remove("btn-light");
+                            document.getElementById(id).classList.add("btn-primary");
+                            document.getElementById("dis"+id).disabled=true;
+                            data=JSON.parse(data);
+                            document.getElementById("qty1"+id).value=data.cnt;
+                           
+                        },
+                        error: function(){
+                            alert("ajax call failed while liking")
+                        }
+                    }); 
+                }
+                else
+                {
+                    var xsrf = $.cookie('_xsrf')
+                    $.ajax({
+                        type: 'POST',
+                        url: '/unlike',
+                        data : id,
+                        headers: {'X-XSRFToken' : xsrf },
+                        dataType: 'text',
+                        success: function(data) {
+                            document.getElementById(id).classList.remove("btn-primary");
+                            document.getElementById(id).classList.add("btn-light");
+                            document.getElementById("dis"+id).disabled=false;
+                            data=JSON.parse(data);
+                            document.getElementById("qty1"+id).value=data.cnt;
+                            
+                        },
+                        error: function(){
+                            alert("ajax call failed")
+                        }
+                    });     
+                }
+            
+            }
+            
+            
+            function dislikepost(id) {
+                
+                if(document.getElementById(id).classList.contains("btn-light"))
+                {
+                    var xsrf = $.cookie('_xsrf')
+                    $.ajax({
+                        type: 'POST',
+                        url: '/dislike',
+                        data : id,
+                        headers: {'X-XSRFToken' : xsrf },
+                        dataType: 'text',
+                        success: function(data) {
+                            document.getElementById(id).classList.remove("btn-light");
+                            document.getElementById(id).classList.add("btn-primary");
+                            document.getElementById(id.substring(3)).disabled=true;
+                            data=JSON.parse(data);
+                            var ids = id.substring(3);
+                            document.getElementById("qty2"+ids).value=data.cnt;
+                            
+                        },
+                        error: function(){
+                            alert("Oops someething went wrong!!")
+                        }
+                    }); 
+                }
+                else
+                {
+                    var xsrf = $.cookie('_xsrf')
+                    $.ajax({
+                        type: 'POST',
+                        url: '/undo_dislike',
+                        data : id,
+                        headers: {'X-XSRFToken' : xsrf },
+                        dataType: 'text',
+                        success: function(data) {
+                            document.getElementById(id).classList.remove("btn-primary");
+                            document.getElementById(id).classList.add("btn-light");
+                            document.getElementById(id.substring(3)).disabled=false;
+                            data=JSON.parse(data);
+                           
+                            document.getElementById("qty2"+id.substring(3)).value=data.cnt;
+                           
+                        },
+                        error: function(){
+                            alert("Oops something went wrong!!")
+                        }
+                    });     
+                }
+            
+            }
+            
+            function deletepost(id)
+            {
+
+                    swal({
+                          title: "Are you sure?",
+                          text: "You will not be able to retrieve this file.",
+                          type: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#DD6B55",
+                          confirmButtonText: "Yes, delete it!",
+                          cancelButtonText: "No, cancel please!",
+                          closeOnConfirm: true,
+                          closeOnCancel: true,
+                        },
+                        function(isConfirm){
+                          if (isConfirm) {
+                            // submitting the form when user press yes
+                                var xsrf = $.cookie('_xsrf')
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/deletepost',
+                                    data : id,
+                                    headers: {'X-XSRFToken' : xsrf },
+                                    dataType: 'text',
+                                    success: function(data) {
+                                        var parent = document.getElementById("parent");
+                                        var child = document.getElementById("child"+id);
+                                        parent.removeChild(child);
+                                       
+                                    },
+                                    error: function(){
+                                        sweetAlert("Oops...", "Something went wrong!", "error");
+                                    }
+                                });
+                          } else {
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                          }
+                        });
+
+              
+            }
+
+            
+            
+            //* js for sending data to tornado method with cookies */
+                  
+                 
+              (function (factory) {
+            if (typeof define === 'function' && define.amd) {
+            // AMD
+            define(['jquery'], factory);
+            } else if (typeof exports === 'object') {
+            // CommonJS
+            factory(require('jquery'));
+            } else {
+            // Browser globals
+            factory(jQuery);
+            }
+            }(function ($) {
+            
+            var pluses = /\+/g;
+            
+            function encode(s) {
+            return config.raw ? s : encodeURIComponent(s);
+            }
+            
+            function decode(s) {
+            return config.raw ? s : decodeURIComponent(s);
+            }
+            
+            function stringifyCookieValue(value) {
+            return encode(config.json ? JSON.stringify(value) : String(value));
+            }
+            
+            function parseCookieValue(s) {
+            if (s.indexOf('"') === 0) {
+            // This is a quoted cookie as according to RFC2068, unescape...
+            s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+            }
+            
+            try {
+            // Replace server-side written pluses with spaces.
+            // If we can't decode the cookie, ignore it, it's unusable.
+            // If we can't parse the cookie, ignore it, it's unusable.
+            s = decodeURIComponent(s.replace(pluses, ' '));
+            return config.json ? JSON.parse(s) : s;
+            } catch(e) {}
+            }
+            
+            function read(s, converter) {
+            var value = config.raw ? s : parseCookieValue(s);
+            return $.isFunction(converter) ? converter(value) : value;
+            }
+            
+            var config = $.cookie = function (key, value, options) {
+            
+            // Write
+            
+            if (value !== undefined && !$.isFunction(value)) {
+            options = $.extend({}, config.defaults, options);
+            
+            if (typeof options.expires === 'number') {
+            var days = options.expires, t = options.expires = new Date();
+            t.setTime(+t + days * 864e+5);
+            }
+            
+            return (document.cookie = [
+            encode(key), '=', stringifyCookieValue(value),
+            options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+            options.path    ? '; path=' + options.path : '',
+            options.domain  ? '; domain=' + options.domain : '',
+            options.secure  ? '; secure' : ''
+            ].join(''));
+            }
+            
+            // Read
+            
+            var result = key ? undefined : {};
+            
+            // To prevent the for loop in the first place assign an empty array
+            // in case there are no cookies at all. Also prevents odd result when
+            // calling $.cookie().
+            var cookies = document.cookie ? document.cookie.split('; ') : [];
+            
+            for (var i = 0, l = cookies.length; i < l; i++) {
+            var parts = cookies[i].split('=');
+            var name = decode(parts.shift());
+            var cookie = parts.join('=');
+            
+            if (key && key === name) {
+            // If second argument (value) is a function it's a converter...
+            result = read(cookie, value);
+            break;
+            }
+            
+            // Prevent storing a cookie that we couldn't decode.
+            if (!key && (cookie = read(cookie)) !== undefined) {
+            result[name] = cookie;
+            }
+            }
+            
+            return result;
+            };
+            
+            config.defaults = {};
+            
+            $.removeCookie = function (key, options) {
+            if ($.cookie(key) === undefined) {
+            return false;
+            }
+            
+            // Must not alter options, thus extending a fresh object...
+            $.cookie(key, '', $.extend({}, options, { expires: -1 }));
+            return !$.cookie(key);
+            };
+            
+            }));
+            
+        </script>
+       </body>
+</html>
+

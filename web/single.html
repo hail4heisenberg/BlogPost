@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Blogger a Blogging Category Flat Bootstrap Responsive Website Template | Single page :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Blogger Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android  Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+<link href="{{static_url("css/bootstrap.css")}}" rel='stylesheet' type='text/css' />
+<link href='//fonts.googleapis.com/css?family=Open+Sans:700,700italic,800,300,300italic,400italic,400,600,600italic' rel='stylesheet' type='text/css'>
+<!--Custom-Theme-files-->
+	<link href="{{static_url("css/style.css")}}" rel='stylesheet' type='text/css' />	
+	<script src="js/jquery.min.js"> </script>
+<!--/script-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<style type="text/css"> 
+html,body{
+	overflow: hidden;
+}
+</style>
+
+</head>
+<body>
+	<!-- header-section-starts -->
+      <div class="h-top" id="home">
+		   <div class="top-header">
+				  <ul style="float:right" class="cl-effect-16 top-nag">
+						
+						<li><a href="/logout" data-hover="Logout">Logout</a></li>
+						<li><a href="/" data-hover="GO Back">Go Back</a></li>
+					</ul>
+
+					<div class="clearfix"></div>
+				</div>
+       </div>
+	<div class="full">
+			<div class="col-md-3 top-nav sing-page">
+				     <div class="logo">
+						<a href="index.html"><h1>Welcome!!</h1></a>
+					</div>
+					<div class="top-menu">
+					 <span class="menu"> </span>
+
+					<ul class="cl-effect-16">
+						<li><a class="active" href="/" data-hover="HOME">Home</a></li>
+						<li><a href="/category/entertainment" data-hover="Entertainment">Entertainment</a></li>
+	                    <li><a href="/category/science" data-hover="Science">Science</a></li>
+	                    <li><a href="/category/political" data-hover="Political">Political</a></li>
+	                    <li><a href="/add_blog" data-hover="Add Blog">Add Blog</a></li>
+	 
+						<li><a href="/" data-hover="GO Back">Go Back</a></li>
+					</ul>
+					
+			    </div>
+			</div>
+		<div class="col-md-9 main">
+		<!--banner-section-->
+		<div class="banner-section" style="overflow-x: hidden;width:100%;height: 850px">
+		   <h3 class="tittle">View Blog <i class="glyphicon glyphicon-file"></i></h3>
+			<div class="single">
+			   <img src="{{static_url("images/3.jpg")}}" class="img-responsive" alt="" />
+			    <div class="b-bottom"> 
+			      <h5 class="top"><a href="#">{{data[0][1]}}</a></h5>
+				   <p class="sub" style="min-height: 200px;width: 90%;overflow-wrap: break-word;text-overflow: ellipsis;overflow: hidden;">{{data[0][2]}}</p>
+			      <p>Published On {{date}} </p>
+				 
+				</div>
+			 </div>
+			  			<div class="response" style="margin-top: 2.5%;overflow-y: scroll;height: 300px;width:100%">
+					<h4 id="Comment">Comments</h4>
+					{% for comment in comm %}
+					<div class="media response-info">
+						<div class="media-left response-text-left">
+							<a href="#">
+								{{comment[6]}}
+							</a>
+							<h5><a href="#">{{comment[3]}}</a></h5>
+						</div>
+						<div class="media-body response-text-right">
+							<p>{{comment[2]}}</p>
+							<ul>
+								<li>{{comment[5]}}</li>
+								
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<hr size="10" noshade> 
+					{% end %}
+				</div>	
+				<div class="coment-form">
+					<h4 id="leave">Leave your comment</h4>
+					<span id="success" style="color: green;display: none;margin-bottom: 2.5%">Comment Posted</span>
+					<form>
+						<input type="text" name="title" id="ctitle" placeholder="Title your comment" required="" onchange="removenotification()">
+						<textarea name = "comment" id="ctext" required="" placeholder="Your Comment..." onchange="removenotification()"></textarea>
+						<input id="id" style="display: none;" value="{{data[0][0]}}">
+						<input type="button" style="margin-top: 1.5%" id="sub" value="Submit Comment" onclick="submitcomment('{{data[0][0]}}')">
+					</form>
+				</div>	
+				<div class="clearfix"></div>
+			</div>
+			<!--//banner-->
+			<!--//banner-section-->
+			</div>
+		</div>
+			
+	
+<script type="text/javascript">
+		function removenotification()
+		{
+			if(document.getElementById("success").style.display!="none")
+			{
+				document.getElementById("success").style.display="none";	
+			}
+		}
+
+		function submitcomment(id)
+		{
+			var title=document.getElementById("ctitle").value;
+			var text = document.getElementById("ctext").value;
+			var id = document.getElementById("id").value;
+			/*var info='{"title":'+title+',"text":'+text+',"id":'+id+'}'*/
+			if((title != '') && (text!= ''))
+			{
+				var xsrf = $.cookie('_xsrf')
+				$.ajax({
+					headers: {'X-XSRFToken' : xsrf },
+				    type: 'POST',
+				    url: '/comment',
+				    data : {"title":title,"text":text,"id":id},
+				    dataType: "application/JSON",
+				    success: function(data) 
+				    {
+				    	alert("success")
+				    	document.getElementById("success").style.display="block";	
+					},
+					error: function(){
+						document.getElementById("ctitle").value='';
+						document.getElementById("ctext").value='';
+						document.getElementById("ctitle").style.borderColor="green";
+						document.getElementById("ctext").style.borderColor="green";
+						document.getElementById("success").innerHTML="Comment Posted";			
+						document.getElementById("success").style.color="green";				
+						document.getElementById("success").style.display="block";		
+					}
+				});	
+			}
+			else
+			{
+				document.getElementById("success").innerHTML="Please fill all the details...!!";
+				document.getElementById("success").style.color="red";				
+				document.getElementById("success").style.display="block";		
+				
+			}
+			
+		}
+
+(function (factory) {
+if (typeof define === 'function' && define.amd) {
+// AMD
+define(['jquery'], factory);
+} else if (typeof exports === 'object') {
+// CommonJS
+factory(require('jquery'));
+} else {
+// Browser globals
+factory(jQuery);
+}
+}(function ($) {
+
+var pluses = /\+/g;
+
+function encode(s) {
+return config.raw ? s : encodeURIComponent(s);
+}
+
+function decode(s) {
+return config.raw ? s : decodeURIComponent(s);
+}
+
+function stringifyCookieValue(value) {
+return encode(config.json ? JSON.stringify(value) : String(value));
+}
+
+function parseCookieValue(s) {
+if (s.indexOf('"') === 0) {
+// This is a quoted cookie as according to RFC2068, unescape...
+s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+}
+
+try {
+// Replace server-side written pluses with spaces.
+// If we can't decode the cookie, ignore it, it's unusable.
+// If we can't parse the cookie, ignore it, it's unusable.
+s = decodeURIComponent(s.replace(pluses, ' '));
+return config.json ? JSON.parse(s) : s;
+} catch(e) {}
+}
+
+function read(s, converter) {
+var value = config.raw ? s : parseCookieValue(s);
+return $.isFunction(converter) ? converter(value) : value;
+}
+
+var config = $.cookie = function (key, value, options) {
+
+// Write
+
+if (value !== undefined && !$.isFunction(value)) {
+options = $.extend({}, config.defaults, options);
+
+if (typeof options.expires === 'number') {
+var days = options.expires, t = options.expires = new Date();
+t.setTime(+t + days * 864e+5);
+}
+
+return (document.cookie = [
+encode(key), '=', stringifyCookieValue(value),
+options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+options.path    ? '; path=' + options.path : '',
+options.domain  ? '; domain=' + options.domain : '',
+options.secure  ? '; secure' : ''
+].join(''));
+}
+
+// Read
+
+var result = key ? undefined : {};
+
+// To prevent the for loop in the first place assign an empty array
+// in case there are no cookies at all. Also prevents odd result when
+// calling $.cookie().
+var cookies = document.cookie ? document.cookie.split('; ') : [];
+
+for (var i = 0, l = cookies.length; i < l; i++) {
+var parts = cookies[i].split('=');
+var name = decode(parts.shift());
+var cookie = parts.join('=');
+
+if (key && key === name) {
+// If second argument (value) is a function it's a converter...
+result = read(cookie, value);
+break;
+}
+
+// Prevent storing a cookie that we couldn't decode.
+if (!key && (cookie = read(cookie)) !== undefined) {
+result[name] = cookie;
+}
+}
+
+return result;
+};
+
+config.defaults = {};
+
+$.removeCookie = function (key, options) {
+if ($.cookie(key) === undefined) {
+return false;
+}
+
+// Must not alter options, thus extending a fresh object...
+$.cookie(key, '', $.extend({}, options, { expires: -1 }));
+return !$.cookie(key);
+};
+
+}));
+</script>
+
+</body>
+</html>
